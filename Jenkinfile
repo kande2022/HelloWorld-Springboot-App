@@ -24,8 +24,8 @@ pipeline {
         
             post {
                 success {
-                    // junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
+                    junit '**/target/sampletest-report/Test-*.xml'
+                    archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false, onlyIfSuccessful: true
                 }
             }
         }
