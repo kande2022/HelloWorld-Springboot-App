@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    tools {
+        maven "Maven_Home"
+    }
+
+    stages {
+        stage('clone and test') {
+            steps {
+                git 'https://github.com/kande2022/HelloWorld-Springboot-App.git'
+                
+                // To run Maven on a Windows agent, use
+                bat "mvn clean test"
+            }
+        }    
+        stage('build') {
+            steps {
+                git 'https://github.com/kande2022/HelloWorld-Springboot-App.git'
+                
+                // To run Maven on a Windows agent, use
+                bat "mvn clean package"
+            }    
+        }
+            post {
+                success {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
+                }
+            }
+        
+    }
+}
