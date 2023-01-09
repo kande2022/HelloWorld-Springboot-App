@@ -29,5 +29,10 @@ pipeline {
                 }
             }
         }
+        post {
+            success {
+                emailext body: 'build job %BUILD_ID%, is success.', subject: 'build success status', to: 'chavvamadhavi@gmail.com'
+            }
+        }
     }
 }
