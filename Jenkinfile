@@ -25,7 +25,7 @@ pipeline {
             post {
                 success {
                     junit '**/target/sampletest-report/Test-*.xml'
-                    archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false, onlyIfSuccessful: true
+                    archiveArtifacts artifacts: 'target/*.war', followSymlinks: false, onlyIfSuccessful: true
                 }
             }
         }
